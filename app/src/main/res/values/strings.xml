@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">HogarGestor</string>
+    <string name="hintUser">ejemplo@email.com</string>
+    <string name="register">Registrarse</string>
+    <string name="welcomeText">Bienvenido</string>
+    <string name="regIntro">Bienvenido al portal de Hogar Gestor, por favor complete los campos a continuación para proceder con su registro</string>
+    <string name="regName">Nombre</string>
+    <string name="regLastName">Apellido</string>
+    <string name="regNIT">NIT</string>
+    <string name="regEmail">Correo electrónico</string>
+    <string name="regPhone">Telefono</string>
+    <string name="regOutro">A continuación digite su contraseña, recuerde que debe contener mínimo 8 caracteres, entre los cuales debe haber por lo menos una letra mayúscula, una minúsculas, un número y un caracter especial</string>
+    <string name="regPassword">Contraseña</string>
+    <string name="regPrivacy">Acepto las políticas de tratamiento de datos</string>
+
+</resources>
