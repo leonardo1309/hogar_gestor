@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">HogarGestor</string>
-    <string name="hintUser">ejemplo@email.com</string>
+    <string name="hintUser">Email</string>
     <string name="register">Registrarse</string>
     <string name="welcomeText">Bienvenido</string>
     <string name="regIntro">Bienvenido al portal de Hogar Gestor, por favor complete los campos a continuación para proceder con su registro</string>
@@ -12,5 +12,15 @@
     <string name="regOutro">A continuación digite su contraseña, recuerde que debe contener mínimo 8 caracteres, entre los cuales debe haber por lo menos una letra mayúscula, una minúsculas, un número y un caracter especial</string>
     <string name="regPassword">Contraseña</string>
     <string name="regPrivacy">Acepto las políticas de tratamiento de datos</string>
+    <string name="confirmPassword">Confirmar Contraseña</string>
+    <string name="required">Campo requerido</string>
+    <string name="invalidInput">Dato invalido</string>
+    <string name="passwordNotMatch">Las contraseñas no coinciden</string>
+    <string name="welcome">Bienvenido a la app, siga y sientese, sirvase un trago y sientase como en su casa</string>
+    <string name="instructions">Para iniciar, agregue una nueva tarea a la lista de tareas</string>
+    <string name="btnTasks">Ver tareas</string>
+    <string name="welcomeToolbar">Bienvenido</string>
+    <string name="taskToolbar">Panel de tareas</string>
+
 
 </resources>
