@@ -20,7 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class TaskFragment : Fragment(), DashboardActivity.SetTask {
 
-    val adapter1 = TaskAdapter(TaskProvider.taskList) { onItemSelected(it) }
+    val adapter1 = TaskAdapter(TaskProvider.taskList, { onItemSelected(it) }, {onItemLongPressed(it)})
     private var newTaskName: EditText? = null
     private var newTaskPlace: EditText? = null
     private var newTaskTime: TimePicker? = null
@@ -42,7 +42,7 @@ class TaskFragment : Fragment(), DashboardActivity.SetTask {
         fab = fragmentTask.findViewById<FloatingActionButton>(R.id.fab)
         fab?.setOnClickListener {
             onAddTask(
-                LayoutInflater.from(fragmentTask.context).inflate(R.layout.dialog_add, null)
+                LayoutInflater.from(fragmentTask.context).inflate(R.layout.dialog_add, null), "add"
             )
         }
         toolbar?.title = getString(R.string.taskToolbar)
@@ -84,41 +84,83 @@ class TaskFragment : Fragment(), DashboardActivity.SetTask {
 
     }
 
-    fun onItemSelected(task: Task){
+    private fun onItemSelected(task: Task){
         val data =Bundle()
         data.putInt("index", TaskProvider.taskList.indexOf(task))
         activity?.supportFragmentManager?.beginTransaction()
             ?.setReorderingAllowed(true)
             ?.replace(R.id.fcv, DetailFragment::class.java,data,"detail")
             ?.addToBackStack("")?.commit()
-        Toast.makeText(activity,TaskProvider.taskList.size.toString(), Toast.LENGTH_LONG).show()
     }
 
-    private fun onAddTask(view: View) {
-        val builder = AlertDialog.Builder(requireActivity())
-            .setView(view)
-            .setTitle(getString(R.string.addTask))
-        val showCustomDialog = builder.show()
-        val cancel = view.findViewById<Button>(R.id.cancel_button)
-        val add = view.findViewById<Button>(R.id.add_button)
+    private fun onItemLongPressed(task: Task): Boolean {
+        val position = TaskProvider.taskList.indexOf(task)
+        onAddTask(LayoutInflater.from(requireActivity()).inflate(R.layout.dialog_add, null),
+            "edit", task, position)
+        return true
+    }
+
+    private fun onAddTask(view: View, type: String, task: Task ?= null, position: Int ?= null) {
+        val btnAdd: Button = view.findViewById(R.id.add_button)
+        val btnCancel = view.findViewById<Button>(R.id.cancel_button)
+        var title: String = "default"
         newTaskName = view.findViewById<EditText>(R.id.newTaskName)
         newTaskTime = view.findViewById<TimePicker>(R.id.timePicker)
         newTaskPlace = view.findViewById<EditText>(R.id.newTaskPlace)
-        cancel.setOnClickListener { showCustomDialog.dismiss() }
-        add.setOnClickListener {
-            setTask()
-            showCustomDialog.dismiss()
+
+        if(type == "add"){
+            btnAdd.text = getString(R.string.add)
+            title = getString(R.string.addTask)
+        } else if(type == "edit") {
+            title = getString(R.string.editTask)
+            btnAdd.text = getString(R.string.edit)
+            newTaskName?.setText(task?.name)
+            val hour = task?.time?.substring(0,2)?.toInt()
+            val minute = task?.time?.substring(3,5)?.toInt()
+            newTaskTime?.hour = hour!!
+            newTaskTime?.minute = minute!!
+            newTaskPlace?.setText(task.place)
         }
+        val builder = AlertDialog.Builder(requireActivity())
+            .setView(view)
+            .setTitle(title)
+        val showCustomDialog = builder.show()
+        btnCancel.setOnClickListener { showCustomDialog.dismiss() }
+        if(type == "add"){
+            btnAdd.setOnClickListener {
+                setTask()
+                showCustomDialog.dismiss()
+            }
+        }else if (type == "edit"){
+            btnAdd.setOnClickListener {
+                editTask(task!!, position!!)
+                showCustomDialog.dismiss()
+            }
+        }
+
+    }
+
+    private fun editTask(task: Task, position: Int?) {
+        task.name = newTaskName?.text.toString()
+        task.place = newTaskPlace?.text.toString()
+        var hour = newTaskTime?.hour.toString()
+        if(hour.toInt() < 10) hour = "0$hour"
+        var minute = newTaskTime?.minute.toString()
+        if(minute.toInt() < 10) minute = "0$minute"
+        task.time = "$hour:$minute"
+
+        adapter1.notifyItemChanged(position!!)
     }
 
     private fun setTask() {
         val name = newTaskName?.text.toString()
         val place = newTaskPlace?.text.toString()
-        val hour = newTaskTime?.hour.toString()
-        val minute = newTaskTime?.minute.toString()
+        var hour = newTaskTime?.hour.toString()
+        if(hour.toInt() < 10) hour = "0$hour"
+        var minute = newTaskTime?.minute.toString()
+        if(minute.toInt() < 10) minute = "0$minute"
         val newTask = Task(name, "$hour:$minute", place, false)
         TaskProvider.taskList.add(newTask)
         adapter1.notifyItemInserted(TaskProvider.taskList.lastIndex)
     }
-
 }

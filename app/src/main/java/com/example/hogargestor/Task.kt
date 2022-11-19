@@ -1,3 +1,3 @@
 package com.example.hogargestor
 
-data class Task (val name: String, val time: String, val place: String, val done: Boolean)
+data class Task (var name: String, var time: String, var place: String, var done: Boolean)

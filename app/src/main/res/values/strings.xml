@@ -25,8 +25,10 @@
     <string name="time">Hora</string>
     <string name="place">Lugar</string>
     <string name="addTask">Agregar Tarea</string>
+    <string name="editTask">Editar Tarea</string>
     <string name="cancel">Cancelar</string>
     <string name="add">Agregar</string>
+    <string name="edit">Editar</string>
 
 
 </resources>
