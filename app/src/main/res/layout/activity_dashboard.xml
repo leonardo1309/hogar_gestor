@@ -32,17 +32,4 @@
             android:layout_height="match_parent"/>
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@android:drawable/ic_input_add"
-        android:tint="@color/black"
-        android:backgroundTint="@color/skin"
-        android:layout_margin="16dp">
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

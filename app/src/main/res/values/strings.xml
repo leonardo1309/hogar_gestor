@@ -21,6 +21,12 @@
     <string name="btnTasks">Ver tareas</string>
     <string name="welcomeToolbar">Bienvenido</string>
     <string name="taskToolbar">Panel de tareas</string>
+    <string name="createNewTask">Indique la información para su nueva tarea</string>
+    <string name="time">Hora</string>
+    <string name="place">Lugar</string>
+    <string name="addTask">Agregar Tarea</string>
+    <string name="cancel">Cancelar</string>
+    <string name="add">Agregar</string>
 
 
 </resources>

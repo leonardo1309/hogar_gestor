@@ -11,8 +11,8 @@ import com.example.hogargestor.Task
 
 class TaskViewHolder(view:View) : ViewHolder(view) {
 
-    val taskname = view.findViewById<TextView>(R.id.taskName)
-    val done = view.findViewById<CheckBox>(R.id.taskDone)
+    private val taskname = view.findViewById<TextView>(R.id.taskName)
+    private val done = view.findViewById<CheckBox>(R.id.taskDone)
 
     fun render(task: Task, onClickListener:(Task) -> Unit){
         taskname.text = task.name

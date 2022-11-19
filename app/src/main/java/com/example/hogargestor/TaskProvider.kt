@@ -2,7 +2,7 @@ package com.example.hogargestor
 
 class TaskProvider {
     companion object{
-        val taskList = listOf<Task>(
+        val taskList = mutableListOf<Task>(
             Task("Develop","now","here", true),
             Task("watch","then", "bed", false),
             Task("eat","morning", "table",false),

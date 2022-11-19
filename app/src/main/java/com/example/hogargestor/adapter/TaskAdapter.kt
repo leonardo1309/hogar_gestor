@@ -7,6 +7,7 @@ import com.example.hogargestor.R
 import com.example.hogargestor.Task
 
 class TaskAdapter(private val taskList: List<Task>, private val onClickListener:(Task) -> Unit) : RecyclerView.Adapter<TaskViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return TaskViewHolder(layoutInflater.inflate(R.layout.item_task, parent, false))
