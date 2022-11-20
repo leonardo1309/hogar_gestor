@@ -29,6 +29,8 @@
     <string name="cancel">Cancelar</string>
     <string name="add">Agregar</string>
     <string name="edit">Editar</string>
+    <string name="undo">Deshacer</string>
+    <string name="deleted">"Eliminado "</string>
 
 
 </resources>

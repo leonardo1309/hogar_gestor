@@ -5,7 +5,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.hogargestor.R
-import com.example.hogargestor.Task
+import com.example.hogargestor.room_database.Task
 
 class TaskViewHolder(view:View) : ViewHolder(view) {
 

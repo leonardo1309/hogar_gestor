@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.example.hogargestor.room_database.Task
+import com.example.hogargestor.room_database.TaskProvider
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class DetailFragment : Fragment() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -25,7 +29,14 @@ class DetailFragment : Fragment() {
         var tvTaskName: TextView = fragment.findViewById(R.id.tvTaskName)
         var tvTaskTime: TextView = fragment.findViewById(R.id.tvTaskTime)
         var tvTaskPlace: TextView = fragment.findViewById(R.id.tvTaskPlace)
-        val task = TaskProvider.taskList[index]
+        val db = TaskProvider.getDatabase(tvTaskName.context)
+        val taskDao = db.taskDao()
+        var task = Task(0,"","","", false)
+        runBlocking {
+            launch {
+                task = taskDao.getAllTasks()[index]
+            }
+        }
 
         tvTaskName.text = task.name
         tvTaskTime.text = task.time
