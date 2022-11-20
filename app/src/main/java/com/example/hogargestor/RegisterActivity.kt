@@ -46,7 +46,6 @@ class RegisterActivity : AppCompatActivity() {
         regPassword = findViewById(R.id.regPassword)
         confirmPassword = findViewById(R.id.confirmPassword)
         checkPolicies = findViewById(R.id.checkPolicies)
-        val btnRegister = findViewById<Button>(R.id.btnReg)
     }
 
     private fun ValidateForm() : Boolean {

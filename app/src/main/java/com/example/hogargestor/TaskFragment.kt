@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TimePicker
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -18,7 +17,7 @@ import com.example.hogargestor.adapter.TaskAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
-class TaskFragment : Fragment(), DashboardActivity.SetTask {
+class TaskFragment : Fragment() {
 
     val adapter1 = TaskAdapter(TaskProvider.taskList, { onItemSelected(it) }, {onItemLongPressed(it)})
     private var newTaskName: EditText? = null
@@ -38,8 +37,7 @@ class TaskFragment : Fragment(), DashboardActivity.SetTask {
         val fragmentTask = inflater.inflate(R.layout.fragment_task, container, false)
         val recycler = fragmentTask.findViewById<RecyclerView>(R.id.recyclerTasks)
         val toolbar = activity?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
-        val adapter = recycler.adapter
-        fab = fragmentTask.findViewById<FloatingActionButton>(R.id.fab)
+        fab = fragmentTask.findViewById(R.id.fab)
         fab?.setOnClickListener {
             onAddTask(
                 LayoutInflater.from(fragmentTask.context).inflate(R.layout.dialog_add, null), "add"
@@ -104,9 +102,9 @@ class TaskFragment : Fragment(), DashboardActivity.SetTask {
         val btnAdd: Button = view.findViewById(R.id.add_button)
         val btnCancel = view.findViewById<Button>(R.id.cancel_button)
         var title: String = "default"
-        newTaskName = view.findViewById<EditText>(R.id.newTaskName)
-        newTaskTime = view.findViewById<TimePicker>(R.id.timePicker)
-        newTaskPlace = view.findViewById<EditText>(R.id.newTaskPlace)
+        newTaskName = view.findViewById(R.id.newTaskName)
+        newTaskTime = view.findViewById(R.id.timePicker)
+        newTaskPlace = view.findViewById(R.id.newTaskPlace)
 
         if(type == "add"){
             btnAdd.text = getString(R.string.add)

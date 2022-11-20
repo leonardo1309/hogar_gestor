@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="#DDEDE8"
     tools:context=".DashboardActivity">
+    <include layout="@layout/drawer_about"/>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -15,7 +16,6 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/skin"
         app:titleTextColor="@color/white">
-
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
@@ -28,8 +28,12 @@
         
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fcv"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:navGraph="@navigation/nav_graph"
+            android:layout_margin="16dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
