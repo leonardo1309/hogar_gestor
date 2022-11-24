@@ -4,13 +4,19 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.system.Os.accept
 import android.text.TextUtils
 import android.util.Patterns
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.util.regex.Pattern
 
 class RegisterActivity : AppCompatActivity() {
@@ -136,8 +142,25 @@ class RegisterActivity : AppCompatActivity() {
 
     fun onRegister(view: View) {
         if(ValidateForm()){
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(
+                regEmail!!.text.toString(),
+                regPassword!!.text.toString()
+            ).addOnCompleteListener{
+                if(it.isSuccessful){
+                    Toast.makeText(this, "User created succesfully", Toast.LENGTH_SHORT).show()
+                }else showAlert()
+            }
             val intent = Intent(this, DashboardActivity:: class.java)
             startActivity(intent)
         }
+    }
+
+    private fun showAlert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.error))
+        builder.setMessage(getString(R.string.authError))
+        builder.setPositiveButton(getString(R.string.accept), null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 }

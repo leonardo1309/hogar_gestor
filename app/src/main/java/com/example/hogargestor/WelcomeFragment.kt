@@ -1,21 +1,17 @@
 package com.example.hogargestor
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toolbar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 
+enum class LoginProviderType{
+    BASIC
+}
 class WelcomeFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,8 +28,8 @@ class WelcomeFragment : Fragment() {
     }
 
 
-    fun onClickListener(){
-        activity?.getSupportFragmentManager()?.beginTransaction()
+    private fun onClickListener(){
+        activity?.supportFragmentManager?.beginTransaction()
             ?.setReorderingAllowed(true)
             ?.replace(R.id.fcv, TaskFragment::class.java,null,"tasks")
             ?.addToBackStack("")?.commit()
