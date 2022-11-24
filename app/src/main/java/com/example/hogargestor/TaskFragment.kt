@@ -18,7 +18,7 @@ import com.example.hogargestor.adapter.TaskAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
-class TaskFragment : Fragment(), DashboardActivity.SetTask {
+class TaskFragment : Fragment(){
 
     val adapter1 = TaskAdapter(TaskProvider.taskList, { onItemSelected(it) }, {onItemLongPressed(it)})
     private var newTaskName: EditText? = null

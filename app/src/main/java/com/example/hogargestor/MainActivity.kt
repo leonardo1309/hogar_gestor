@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity() {
         }
         btnLogin?.setOnClickListener{
             Login()
-            val intent = Intent(this, DashboardActivity:: class.java)
-            startActivity(intent)
         }
     }
 

@@ -32,6 +32,7 @@
     <string name="authError">Se ha producido un error con el registro</string>
     <string name="error">Error</string>
     <string name="accept">Aceptar</string>
+    <string name="logout">Cerrar sesión</string>
 
 
 </resources>
