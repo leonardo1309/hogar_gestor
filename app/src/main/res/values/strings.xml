@@ -33,6 +33,12 @@
     <string name="error">Error</string>
     <string name="accept">Aceptar</string>
     <string name="logout">Cerrar sesión</string>
+    <string name="loginGoogle">Google</string>
+    <string name="login">Login</string>
+    <string name="forgotPassword">¿Olvidaste la contraseña?</string>
+    <string name="recoverPass">Recuperar contraseña</string>
+    <string name="typeRecoveryEmail">Digita el email con el que registraste tu cuenta</string>
+    <string name="recover">Recuperar</string>
 
 
 </resources>

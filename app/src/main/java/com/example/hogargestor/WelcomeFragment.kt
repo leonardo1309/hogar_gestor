@@ -9,7 +9,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 
 enum class LoginProviderType{
-    BASIC
+    BASIC,
+    GOOGLE
+
 }
 class WelcomeFragment : Fragment() {
 

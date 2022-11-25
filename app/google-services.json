@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1065733607615-0bj3nu4ca91kur6mu3i23gdhv47s84qc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hogargestor",
+            "certificate_hash": "384a0b39fc26783ee28e4c272ee66e024ee0de82"
+          }
+        },
+        {
           "client_id": "1065733607615-ujoun9vf23g353vc30ii60jh3vvnq3rv.apps.googleusercontent.com",
           "client_type": 3
         }

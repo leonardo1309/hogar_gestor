@@ -38,7 +38,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="30dp"
             app:endIconMode="password_toggle">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editPassword"
@@ -53,7 +53,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/teal_st"
-            android:text="Login"/>
+            android:text="@string/login"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGoogleLogin"
+            android:backgroundTint="@android:color/white"
+            android:text="@string/loginGoogle"
+            android:textColor="@color/teal_darker"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:paddingStart="130dp"
+            android:paddingEnd="100dp"
+            android:gravity="center"
+            android:drawableEnd="@mipmap/icon_google_round" />
 
         <Button
             android:layout_width="match_parent"
@@ -64,8 +78,15 @@
             android:textColor="@color/teal_darker"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:gravity="center"
-            android:layout_margin="20dp"/>
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/forgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgotPassword"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/teal_st" />
 
 
     </LinearLayout>
