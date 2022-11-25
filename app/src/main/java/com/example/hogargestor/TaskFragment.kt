@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TimePicker
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -29,7 +31,7 @@ class TaskFragment : Fragment() {
     private lateinit var newTaskPlace: EditText
     private lateinit var newTaskTime: TimePicker
     private var fab: FloatingActionButton? = null
-    val adapter1 = TaskAdapter(newTaskName.context,{ onItemSelected(it) }, {onItemLongPressed(it)})
+    var adapter1 : TaskAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +45,7 @@ class TaskFragment : Fragment() {
         val fragmentTask = inflater.inflate(R.layout.fragment_task, container, false)
         val recycler = fragmentTask.findViewById<RecyclerView>(R.id.recyclerTasks)
         val toolbar = activity?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
-        val adapter = recycler.adapter
+        adapter1 = TaskAdapter(recycler.context,{ onItemSelected(it) }, {onItemLongPressed(it)})
         fab = fragmentTask.findViewById<FloatingActionButton>(R.id.fab)
         fab?.setOnClickListener {
             onAddTask(
@@ -77,10 +79,10 @@ class TaskFragment : Fragment() {
                 var deletedItem = Task(0,"","","",false)
                 runBlocking {
                     launch {
-                        var task = taskDao.getAllTasks()[position]
+                        val task = taskDao.getAllTasks()[position]
                         deletedItem = task
                         taskDao.deleteTask(task)
-                        adapter1.notifyItemRemoved(position)
+                        adapter1?.notifyItemRemoved(position)
                     }
                 }
 
@@ -91,7 +93,7 @@ class TaskFragment : Fragment() {
                             runBlocking {
                                 launch {
                                     taskDao.insertTask(deletedItem)
-                                    adapter1.notifyItemInserted(position)
+                                    adapter1?.notifyItemInserted(position)
                                 }
                             }
                         }).show()
@@ -102,7 +104,7 @@ class TaskFragment : Fragment() {
     }
 
     private fun onItemSelected(task: Task){
-        val db = TaskProvider.getDatabase(newTaskName.context)
+        val db = TaskProvider.getDatabase(fab!!.context)
         val taskDao = db.taskDao()
         val data =Bundle()
         var index = 0
@@ -119,7 +121,7 @@ class TaskFragment : Fragment() {
     }
 
     private fun onItemLongPressed(task: Task): Boolean {
-        val db = TaskProvider.getDatabase(newTaskName.context)
+        val db = TaskProvider.getDatabase(fab!!.context)
         val taskDao = db.taskDao()
         var position = 0
         runBlocking{
@@ -188,7 +190,7 @@ class TaskFragment : Fragment() {
                 taskDao.updateTask(task)
             }
         }
-        adapter1.notifyItemChanged(position!!)
+        adapter1?.notifyItemChanged(position!!)
     }
 
     private fun setTask() {
@@ -204,7 +206,7 @@ class TaskFragment : Fragment() {
         runBlocking {
             launch {
                 var result = taskDao.insertTask(newTask)
-                adapter1.notifyItemInserted(taskDao.getAllTasks().lastIndex)
+                adapter1?.notifyItemInserted(taskDao.getAllTasks().lastIndex)
             }
         }
     }

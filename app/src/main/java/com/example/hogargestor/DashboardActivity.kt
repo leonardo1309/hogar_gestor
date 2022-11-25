@@ -6,8 +6,6 @@ import com.example.hogargestor.room_database.Task
 
 class DashboardActivity : AppCompatActivity() {
 
-    private val sett: SetTask? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
@@ -19,11 +17,4 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
-
-
-
-
-    interface SetTask {
-        fun updateList(task: Task) {}
-    }
 }
