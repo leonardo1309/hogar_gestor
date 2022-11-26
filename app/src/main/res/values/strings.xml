@@ -39,6 +39,8 @@
     <string name="recoverPass">Recuperar contraseña</string>
     <string name="typeRecoveryEmail">Digita el email con el que registraste tu cuenta</string>
     <string name="recover">Recuperar</string>
+    <string name="deleted">"Deleted "</string>
+    <string name="undo">Deshacer</string>
 
 
 </resources>

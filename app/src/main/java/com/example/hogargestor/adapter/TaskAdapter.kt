@@ -1,12 +1,19 @@
 package com.example.hogargestor.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hogargestor.R
-import com.example.hogargestor.Task
+import com.example.hogargestor.room_database.Task
+import com.example.hogargestor.room_database.TaskProvider
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
-class TaskAdapter(private val taskList: List<Task>, private val onClickListener:(Task) -> Unit, private val onLongClickListener:(Task) -> Boolean) : RecyclerView.Adapter<TaskViewHolder>() {
+class TaskAdapter(context: Context, private val onClickListener:(Task) -> Unit, private val onLongClickListener:(Task) -> Boolean) : RecyclerView.Adapter<TaskViewHolder>() {
+
+    private val db = TaskProvider.getDatabase(context)
+    private val taskDao = db.taskDao()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -14,9 +21,24 @@ class TaskAdapter(private val taskList: List<Task>, private val onClickListener:
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val item = taskList[position]
+        var item = Task(0, "","","",false)
+        runBlocking {
+            launch {
+                if (taskDao.getAllTasks().isNotEmpty()) {
+                    item = taskDao.getAllTasks()[position]
+                }
+            }
+        }
         holder.render(item, onClickListener, onLongClickListener)
     }
 
-    override fun getItemCount(): Int = taskList.size
+    override fun getItemCount(): Int{
+        var size = 0
+        runBlocking {
+            launch {
+                size = taskDao.getAllTasks().size
+            }
+        }
+        return size
+    }
 }

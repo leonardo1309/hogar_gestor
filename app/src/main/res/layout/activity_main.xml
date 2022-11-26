@@ -64,10 +64,7 @@
             android:textColor="@color/teal_darker"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:paddingStart="130dp"
-            android:paddingEnd="100dp"
-            android:gravity="center"
-            android:drawableEnd="@mipmap/icon_google_round" />
+            android:gravity="center" />
 
         <Button
             android:layout_width="match_parent"
